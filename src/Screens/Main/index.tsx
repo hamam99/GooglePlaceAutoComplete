@@ -12,17 +12,24 @@ const Main = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <PlaceAutoComplete
-        onPress={(data, details) => {
-          setMarker({
-            title: details?.name ?? '',
-            description: details?.formatted_address ?? '',
-            latitude: details?.geometry.location.lat ?? 0,
-            longitude: details?.geometry.location.lng ?? 0,
-          });
-        }}
-      />
       <MapViewRN marker={marker} />
+      <View
+        style={{
+          position: 'absolute',
+          top: 0,
+          width: '100%',
+        }}>
+        <PlaceAutoComplete
+          onPress={(data, details) => {
+            setMarker({
+              title: details?.name ?? '',
+              description: details?.formatted_address ?? '',
+              latitude: details?.geometry.location.lat ?? 0,
+              longitude: details?.geometry.location.lng ?? 0,
+            });
+          }}
+        />
+      </View>
     </View>
   );
 };
