@@ -4,6 +4,7 @@ import {
   GooglePlaceDetail,
   GooglePlacesAutocomplete,
 } from 'react-native-google-places-autocomplete';
+import { KEYS } from '../../Constants';
 
 type IGooglePlaceAutoComplete = {
   data: GooglePlaceData;
@@ -19,7 +20,7 @@ const PlaceAutoComplete = ({ onPress }: { onPress: any }) => {
       }}
       onFail={error => console.error(error)}
       query={{
-        key: 'AIzaSyANgy-MLJM0s8I72oZYSfc1qp9kdvCeiUs',
+        key: KEYS.GOOGLE_API,
         language: 'en',
       }}
       fetchDetails={true}
