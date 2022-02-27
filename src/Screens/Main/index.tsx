@@ -3,11 +3,16 @@ import { View } from 'react-native';
 import { MapViewRN, PlaceAutoComplete } from '../../Components';
 
 const Main = () => {
+  const TUGU_JOGJA_COORDINATE = {
+    latitude: -7.782794234312435,
+    longitude: 110.36702205341435,
+  };
+
   const [marker, setMarker] = useState({
     title: '',
     description: '',
-    latitude: 0,
-    longitude: 0,
+    latitude: TUGU_JOGJA_COORDINATE.latitude, // default coordinate
+    longitude: TUGU_JOGJA_COORDINATE.longitude, // default coordinate
   });
 
   return (

@@ -9,20 +9,20 @@ type IMarker = {
 };
 
 const MapViewRN = ({ marker }: { marker: IMarker }) => {
-  const TUGU_JOGJA_COORDINATE = {
-    latitude: -7.782794234312435,
-    longitude: 110.36702205341435,
-  };
+  const ref = React.createRef<MapView>();
 
   return (
     <MapView
+      ref={ref}
       provider={PROVIDER_GOOGLE}
       style={{ flex: 1 }}
-      initialRegion={{
-        latitude: TUGU_JOGJA_COORDINATE.latitude,
-        longitude: TUGU_JOGJA_COORDINATE.longitude,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+      onLayout={() => {
+        ref?.current?.animateToRegion({
+          latitude: marker.latitude,
+          longitude: marker.longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        });
       }}>
       <Marker
         coordinate={{
