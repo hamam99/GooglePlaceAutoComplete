@@ -10,12 +10,20 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@emotion/react": "11.8.1",
+    "@emotion/styled": "11.8.1",
+    "@mui/material": "5.4.3",
     "react": "17.0.2",
-    "react-native": "0.67.3"
+    "react-native": "0.67.3",
+    "react-native-google-places-autocomplete": "2.4.1",
+    "react-native-maps": "^0.30.1",
+    "react-redux": "7.2.6",
+    "redux": "4.1.2",
+    "redux-thunk": "2.4.1"
   },
   "devDependencies": {
-    "@babel/preset-typescript": "7.16.7",
     "@babel/core": "7.12.9",
+    "@babel/preset-typescript": "7.16.7",
     "@babel/runtime": "7.12.5",
     "@react-native-community/eslint-config": "2.0.0",
     "@types/jest": "26.0.23",
