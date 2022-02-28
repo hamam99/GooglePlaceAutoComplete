@@ -8,20 +8,12 @@ export const getListAutoComplete =
   (keyword: string): ThunkAction<void, {}, unknown, AnyAction> =>
   async (dispatch: ThunkDispatch<{}, {}, AnyAction>, getState: any) => {
     try {
-      console.log('getListAutoComplete');
       const { success, response = [] } = await getPlaceAutoComplete(keyword);
       if (!success) {
         return;
       }
       dispatch(setListAutoComplete(response?.predictions ?? []));
-      console.log('getListAutoComplete', 'result', response);
-      console.log(
-        'getListAutoComplete',
-        'result prediction',
-        response?.prediction,
-      );
     } catch (error: any) {
-      console.log('error', error);
       ToastAndroid.show('Sorry. try again later', ToastAndroid.SHORT);
     }
   };
@@ -29,6 +21,11 @@ export const getListAutoComplete =
 const setListAutoComplete = (list: any) => ({
   type: LIST_AUTO_COMPLETE_PLACE,
   payload: list,
+});
+
+export const clearListAutoComplete = () => ({
+  type: LIST_AUTO_COMPLETE_PLACE,
+  payload: [],
 });
 
 export const getDetailPlace =
@@ -39,10 +36,8 @@ export const getDetailPlace =
       if (!success) {
         return;
       }
-      dispatch(setDetailPlace(response));
-      console.log('getDetailPlace', 'result', response);
+      dispatch(setDetailPlace(response?.result ?? {}));
     } catch (error: any) {
-      console.log('error', error);
       ToastAndroid.show('Sorry. try again later', ToastAndroid.SHORT);
     }
   };

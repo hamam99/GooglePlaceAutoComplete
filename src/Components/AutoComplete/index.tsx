@@ -7,7 +7,11 @@ import {
   View,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { getListAutoComplete } from '../../Redux/PlaceAutoComplete/action';
+import {
+  clearListAutoComplete,
+  getDetailPlace,
+  getListAutoComplete,
+} from '../../Redux/PlaceAutoComplete/action';
 
 const AutoComplete = () => {
   const [textValue, setTextValue] = useState('');
@@ -24,10 +28,19 @@ const AutoComplete = () => {
           marginVertical: 5,
           height: 50,
           justifyContent: 'center',
+        }}
+        onPress={() => {
+          onPressListAutoComplete(item);
         }}>
         <Text>{item.description}</Text>
       </TouchableOpacity>
     );
+  };
+
+  const onPressListAutoComplete = (item: any) => {
+    dispatch(getDetailPlace(item.place_id));
+    // setTextValue(item.description);
+    // dispatch(clearListAutoComplete());
   };
 
   const Divider = () => {

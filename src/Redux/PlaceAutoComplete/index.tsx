@@ -29,7 +29,7 @@ const PlaceAutoCompleteReducer = (
     case DETAIL_PLACE: {
       return {
         ...state,
-        DETAIL_PLACE: action.payload,
+        detailPlace: action.payload,
       };
     }
     default: {
