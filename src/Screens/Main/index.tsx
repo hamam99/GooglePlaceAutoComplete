@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
-import { MapViewRN, PlaceAutoComplete } from '../../Components';
+import { AutoComplete, MapViewRN, PlaceAutoComplete } from '../../Components';
+import { getPlaceAutoComplete, getPlaceDetail } from '../../Services';
 
 const Main = () => {
   const TUGU_JOGJA_COORDINATE = {
@@ -15,6 +16,11 @@ const Main = () => {
     longitude: TUGU_JOGJA_COORDINATE.longitude, // default coordinate
   });
 
+  useEffect(() => {
+    // getPlaceAutoComplete('Yogyakarta international airport');
+    getPlaceDetail('ChIJN1t_tDeuEmsRUsoyG83frY4');
+  }, []);
+
   return (
     <View style={{ flex: 1 }}>
       <MapViewRN marker={marker} />
@@ -24,7 +30,7 @@ const Main = () => {
           top: 0,
           width: '100%',
         }}>
-        <PlaceAutoComplete
+        {/* <PlaceAutoComplete
           onPress={(data, details) => {
             setMarker({
               title: details?.name ?? '',
@@ -33,7 +39,9 @@ const Main = () => {
               longitude: details?.geometry.location.lng ?? 0,
             });
           }}
-        />
+        /> */}
+
+        <AutoComplete />
       </View>
     </View>
   );
