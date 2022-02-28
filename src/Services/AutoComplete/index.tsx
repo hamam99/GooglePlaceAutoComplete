@@ -21,7 +21,6 @@ const getPlaceAutoComplete = async (keyword: string) => {
       success: true,
       response: response.data,
     };
-    // console.log('response', response.data);
   } catch (err) {
     return {
       success: false,
@@ -31,13 +30,9 @@ const getPlaceAutoComplete = async (keyword: string) => {
 };
 
 const getPlaceDetail = async (placeId: string) => {
-  console.log('getPlaceDetail');
-
   try {
     const url =
-      ListUrl.PLACE_DETAIL +
-      Qs.stringify({ placeId: placeId }) +
-      Qs.stringify(KEY);
+      ListUrl.PLACE_DETAIL + '?' + Qs.stringify({ placeid: placeId, ...KEY });
     const response = await AxiosWrapper.get(url);
     return {
       success: true,
