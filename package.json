@@ -10,9 +10,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
-    "@emotion/react": "11.8.1",
-    "@emotion/styled": "11.8.1",
-    "@mui/material": "5.4.3",
+    "axios": "0.26.0",
+    "qs": "6.10.3",
     "react": "17.0.2",
     "react-native": "0.67.3",
     "react-native-google-places-autocomplete": "2.4.1",
