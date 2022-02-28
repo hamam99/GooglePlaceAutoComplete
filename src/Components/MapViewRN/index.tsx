@@ -17,7 +17,6 @@ const MapViewRN = ({ marker }: { marker: IMarker }) => {
       provider={PROVIDER_GOOGLE}
       style={{ flex: 1 }}
       onLayout={() => {
-        console.log('onLayout', marker, marker);
         ref?.current?.animateToRegion({
           latitude: marker.latitude,
           longitude: marker.longitude,

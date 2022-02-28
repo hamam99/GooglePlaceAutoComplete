@@ -10,7 +10,6 @@ const KEY = {
 };
 
 const getPlaceAutoComplete = async (keyword: string) => {
-  console.log('getPlaceAutoComplete');
   try {
     const url =
       ListUrl.PLACE_AUTO_COMPLETE +
@@ -18,9 +17,16 @@ const getPlaceAutoComplete = async (keyword: string) => {
       '&' +
       Qs.stringify(KEY);
     const response = await AxiosWrapper.get(url);
-    console.log('response', response.data);
-  } catch (_) {
-    ToastAndroid.show('Sorry. try again later', ToastAndroid.SHORT);
+    return {
+      success: true,
+      response: response.data,
+    };
+    // console.log('response', response.data);
+  } catch (err) {
+    return {
+      success: false,
+      response: err,
+    };
   }
 };
 
@@ -33,9 +39,15 @@ const getPlaceDetail = async (placeId: string) => {
       Qs.stringify({ placeId: placeId }) +
       Qs.stringify(KEY);
     const response = await AxiosWrapper.get(url);
-    console.log('response', response.data);
-  } catch (_) {
-    ToastAndroid.show('Sorry. try again later', ToastAndroid.SHORT);
+    return {
+      success: true,
+      response: response.data,
+    };
+  } catch (err: any) {
+    return {
+      success: true,
+      response: err,
+    };
   }
 };
 

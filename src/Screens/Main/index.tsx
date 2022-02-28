@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { AutoComplete, MapViewRN, PlaceAutoComplete } from '../../Components';
-import { getPlaceAutoComplete, getPlaceDetail } from '../../Services';
+import { getListAutoComplete } from '../../Redux/PlaceAutoComplete/action';
 
 const Main = () => {
   const TUGU_JOGJA_COORDINATE = {
@@ -15,11 +16,6 @@ const Main = () => {
     latitude: TUGU_JOGJA_COORDINATE.latitude, // default coordinate
     longitude: TUGU_JOGJA_COORDINATE.longitude, // default coordinate
   });
-
-  useEffect(() => {
-    // getPlaceAutoComplete('Yogyakarta international airport');
-    getPlaceDetail('ChIJN1t_tDeuEmsRUsoyG83frY4');
-  }, []);
 
   return (
     <View style={{ flex: 1 }}>

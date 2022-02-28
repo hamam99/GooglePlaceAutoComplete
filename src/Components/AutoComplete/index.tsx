@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   FlatList,
-  Pressable,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { getListAutoComplete } from '../../Redux/PlaceAutoComplete/action';
 
 const AutoComplete = () => {
+  const [textValue, setTextValue] = useState('');
+  const dispatch = useDispatch();
+  const { listAutoComplete } = useSelector(
+    state => state.PlaceAutoCompleteReducer,
+  );
+
   const renderItem = ({ item, index }: { item: string; index: number }) => {
     return (
       <TouchableOpacity
-        style={{ marginHorizontal: 5, height: 40, justifyContent: 'center' }}>
-        <Text>{item}</Text>
+        style={{
+          marginHorizontal: 5,
+          marginVertical: 5,
+          height: 50,
+          justifyContent: 'center',
+        }}>
+        <Text>{item.description}</Text>
       </TouchableOpacity>
     );
   };
@@ -23,6 +35,12 @@ const AutoComplete = () => {
       <View style={{ height: 1, width: '100%', backgroundColor: '#9a9a9a' }} />
     );
   };
+
+  const onChangeText = (text: string) => {
+    setTextValue(text);
+    dispatch(getListAutoComplete(text));
+  };
+
   return (
     <View style={{ margin: 5 }}>
       <TextInput
@@ -32,11 +50,19 @@ const AutoComplete = () => {
           backgroundColor: 'white',
           borderRadius: 10,
         }}
+        placeholder="Search"
+        onChangeText={onChangeText}
+        value={textValue}
       />
 
       <FlatList
-        style={{ backgroundColor: 'white', borderRadius: 5, marginTop: 3 }}
-        data={['Satu', 'dua', 'tiga']}
+        style={{
+          backgroundColor: 'white',
+          borderRadius: 10,
+          marginTop: 3,
+          maxHeight: 300,
+        }}
+        data={listAutoComplete}
         renderItem={renderItem}
         ItemSeparatorComponent={Divider}
       />
