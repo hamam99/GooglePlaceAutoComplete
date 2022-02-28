@@ -39,8 +39,8 @@ const AutoComplete = () => {
 
   const onPressListAutoComplete = (item: any) => {
     dispatch(getDetailPlace(item.place_id));
-    // setTextValue(item.description);
-    // dispatch(clearListAutoComplete());
+    setTextValue(item.description);
+    dispatch(clearListAutoComplete());
   };
 
   const Divider = () => {
